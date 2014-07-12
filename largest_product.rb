@@ -25,13 +25,8 @@
 # Find the thirteen adjacent digits in the 1000-digit number that have the greatest product. What is the value of this product?
 
 
-digits_product = lambda do |str|
-   product = 1
-   str.chars.each do |n|
-      product = product * n.to_i
-   end
-
-   return product
+digits_product = Proc.new do |str|
+   str.chars.map(&:to_i).inject(1) {|result, int| result * int}
 end
 
 series = File.new("series.txt").gets.gsub(/\n/, "")
